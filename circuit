@@ -1,53 +1,226 @@
-(function(opts_){/*
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>F1 Circuit Simulation</title>
+    <style>
+        /* Add your CSS styles here for better aesthetics */
+    </style>
+</head>
+<body>
+    <h1>F1 Final Circuit Simulation</h1>
 
- Copyright The Closure Library Authors.
- SPDX-License-Identifier: Apache-2.0
-*/
-'use strict';var f=this||self;function g(a){return a};var h;function k(a,b){this.h=a===l&&b||"";this.g=m}function n(a){return a instanceof k&&a.constructor===k&&a.g===m?a.h:"type_error:Const"}var m={},l={};function p(a,b){this.h=b===q?a:""}p.prototype.toString=function(){return this.h+""};function r(a){return a instanceof p&&a.constructor===p?a.h:"type_error:TrustedResourceUrl"}
-function u(a,b){var c=n(a);if(!v.test(c))throw Error("Invalid TrustedResourceUrl format: "+c);a=c.replace(w,function(d,e){if(!Object.prototype.hasOwnProperty.call(b,e))throw Error('Found marker, "'+e+'", in format string, "'+c+'", but no valid label mapping found in args: '+JSON.stringify(b));d=b[e];return d instanceof k?n(d):encodeURIComponent(String(d))});return x(a)}var w=/%{(\w+)}/g,v=RegExp("^((https:)?//[0-9a-z.:[\\]-]+/|/[^/\\\\]|[^:/\\\\%]+/|[^:/\\\\%]*[?#]|about:blank#)","i"),y=/^([^?#]*)(\?[^#]*)?(#[\s\S]*)?/;
-function z(a){var b=A;a=u(B,a);a=y.exec(r(a).toString());var c=a[3]||"";return x(a[1]+C("?",a[2]||"",b)+C("#",c))}var q={};function x(a){if(void 0===h){var b=null;var c=f.trustedTypes;if(c&&c.createPolicy){try{b=c.createPolicy("goog#html",{createHTML:g,createScript:g,createScriptURL:g})}catch(d){f.console&&f.console.error(d.message)}h=b}else h=b}a=(b=h)?b.createScriptURL(a):a;return new p(a,q)}
-function C(a,b,c){if(null==c)return b;if("string"===typeof c)return c?a+encodeURIComponent(c):"";for(var d in c)if(Object.prototype.hasOwnProperty.call(c,d)){var e=c[d];e=Array.isArray(e)?e:[e];for(var t=0;t<e.length;t++){var D=e[t];null!=D&&(b||(b=a),b+=(b.length>a.length?"&":"")+encodeURIComponent(d)+"="+encodeURIComponent(String(D)))}}return b};function E(a,b){this.g=b===F?a:""}E.prototype.toString=function(){return this.g.toString()};var F={};/*
+    <!-- Circuit Selection Dropdown -->
+    <label for="circuitSelect">Select Circuit:</label>
+    <select id="circuitSelect" onchange="changeCircuit()">
+        <option value="circuit1">Circuit 1</option>
+        <option value="circuit2">Circuit 2</option>
+    </select><br><br>
 
- SPDX-License-Identifier: Apache-2.0
-*/
-var G;try{new URL("s://g"),G=!0}catch(a){G=!1}var H=G;var I="alternate author bookmark canonical cite help icon license next prefetch dns-prefetch prerender preconnect preload prev search subresource".split(" ");var J=new k(l,"https://www.google.com/cse/static/style/look/%{versionDir}%{versionSlash}%{theme}.css"),K=new k(l,"https://www.google.com/cse/static/element/%{versionDir}%{versionSlash}default%{experiment}+%{lang}.css"),B=new k(l,"https://www.google.com/cse/static/element/%{versionDir}%{versionSlash}cse_element__%{lang}.js"),L=new k(l,"/");window.__gcse=window.__gcse||{};window.__gcse.ct=Date.now();
-window.__gcse.scb=function(){var a=window.__gcse;M()||delete opts_.rawCss;var b=N(a.initializationCallback||a.callback);google.search.cse.element.init(opts_)&&("explicit"!==a.parsetags?"complete"===document.readyState||"interactive"===document.readyState?(google.search.cse.element.go(),null==b||b()):google.setOnLoadCallback(function(){google.search.cse.element.go();null==b||b()},!0):null==b||b())};
-function N(a){if("function"===typeof a)return a;if("string"!==typeof a)return null;a=window[a];return"function"!==typeof a?null:a}function M(){var a;return!(null==(a=window.__gcse)?0:a.plainStyle)}
-function O(a){var b=document.createElement("link");b.type="text/css";a:{if(a instanceof p)b.href=r(a).toString();else{if(-1===I.indexOf("stylesheet"))throw Error('TrustedResourceUrl href attribute required with rel="stylesheet"');if(a instanceof E)a=a instanceof E&&a.constructor===E?a.g:"type_error:SafeUrl";else{c:if(H){try{var c=new URL(a)}catch(d){c="https:";break c}c=c.protocol}else d:{c=document.createElement("a");try{c.href=a}catch(d){c=void 0;break d}c=c.protocol;c=":"===c||""===c?"https:":
-c}a="javascript:"!==c?a:void 0}if(void 0===a)break a;b.href=a}b.rel="stylesheet"}return b};var P,A=opts_.usqp?{usqp:opts_.usqp}:{},Q=opts_.language.toLowerCase();P=opts_.cselibVersion?z({versionDir:opts_.cselibVersion,versionSlash:L,lang:Q}):z({versionDir:"",versionSlash:"",lang:Q});var R=window.__gcse.scb,S=document.createElement("script");S.src=r(P);var T,U,V,W=null==(V=(U=(S.ownerDocument&&S.ownerDocument.defaultView||window).document).querySelector)?void 0:V.call(U,"script[nonce]");(T=W?W.nonce||W.getAttribute("nonce")||"":"")&&S.setAttribute("nonce",T);S.type="text/javascript";
-R&&(S.onload=R);document.getElementsByTagName("head")[0].appendChild(S);
-if(M()){document.getElementsByTagName("head")[0].appendChild(O(opts_.cselibVersion?u(K,{versionDir:opts_.cselibVersion,versionSlash:L,experiment:opts_.uiOptions.cssThemeVersion&&4!==opts_.uiOptions.cssThemeVersion?"_v"+opts_.uiOptions.cssThemeVersion:"",lang:opts_.language}):u(K,{versionDir:"",versionSlash:"",experiment:"",lang:opts_.language})));var X,Y="v"+(opts_.uiOptions.cssThemeVersion||4);X=u(J,{versionDir:Y,versionSlash:Y?L:"",theme:opts_.theme.toLowerCase().replace("v2_","")});document.getElementsByTagName("head")[0].appendChild(O(X))};
-})({
-  "cx": "c372276756c6e4d53",
-  "language": "ca",
-  "theme": "V2_DEFAULT",
-  "uiOptions": {
-    "resultsUrl": "",
-    "enableAutoComplete": true,
-    "enableImageSearch": false,
-    "imageSearchLayout": "popup",
-    "resultSetSize": "filtered_cse",
-    "enableOrderBy": true,
-    "orderByOptions": [{
-      "label": "Relevance",
-      "key": ""
-    }, {
-      "label": "Date",
-      "key": "date"
-    }],
-    "overlayResults": true,
-    "queryParameterName": "q",
-    "numTopRefinements": -1,
-    "hideElementBranding": false,
-    "cssThemeVersion": 4,
-    "isSafeSearchActive": false,
-    "numTopAds": 3
-  },
-  "protocol": "https",
-  "rawCss": ".gsc-control-cse{font-family:arial, sans-serif}.gsc-control-cse .gsc-table-result{font-family:arial, sans-serif}.gsc-refinementsGradient{background:linear-gradient(to left,rgba(255,255,255,1),rgba(255,255,255,0))}",
-  "cse_token": "AB-tC_5SCo3l8RqLB5bdUNO7_E1-:1695913486717",
-  "isHostedPage": false,
-  "exp": ["csqr", "cc"],
-  "cselibVersion": "e992cd4de3c7044f",
-  "usqp": "CAI\u003d"
-});
+    <!-- Customizable Race Settings for Circuit 1 -->
+    <div id="customizableSettingsCircuit1">
+        <label for="lapDuration1">Lap Duration (seconds):</label>
+        <input type="number" id="lapDuration1" min="1" value="5"><br>
+
+        <label for="numLaps1">Number of Laps:</label>
+        <input type="number" id="numLaps1" min="1" value="10"><br>
+
+        <label for="yellowColor1">Yellow Ball 1 Color:</label>
+        <input type="color" id="yellowColor1" value="#FFFF00"><br>
+
+        <label for="greenColor1">Green Ball 2 Color:</label>
+        <input type="color" id="greenColor1" value="#008000"><br>
+    </div>
+
+    <!-- Customizable Race Settings for Circuit 2 -->
+    <div id="customizableSettingsCircuit2" style="display: none;">
+        <label for="lapDuration2">Lap Duration (seconds):</label>
+        <input type="number" id="lapDuration2" min="1" value="5"><br>
+
+        <label for="numLaps2">Number of Laps:</label>
+        <input type="number" id="numLaps2" min="1" value="10"><br>
+
+        <label for="yellowColor2">Yellow Ball 1 Color:</label>
+        <input type="color" id="yellowColor2" value="#FFFF00"><br>
+
+        <label for="greenColor2">Green Ball 2 Color:</label>
+        <input type="color" id="greenColor2" value="#008000"><br>
+    </div>
+
+    <button id="startButton" onclick="startRace()">Start Race</button>
+    <button id="stopButton" onclick="stopRace()" disabled>Stop Race</button><br><br>
+
+    <!-- SVG elements for Circuit 1 -->
+    <svg width="1500" height="600" id="svgCircuit1" style="display: block;">
+        <!-- Circuit 1 Path -->
+        <path id="circuit1" d="m 135.31547,123.97619 c -7.55952,15.11905 -2.92785,11.5668 -7.55952,14.36309 -5.39297,3.25591 -12.94903,2.07004 -18.89881,0 -7.28502,-2.5346 -13.691922,-8.06349 -18.142856,-14.36309 -6.299609,-8.9161 -6.251984,-20.973 -10.583333,-30.994049 -1.923056,-4.449199 -3.706848,-9.122406 -6.80357,-12.85119 -4.657235,-5.607809 -17.119636,-13.607143 -17.119636,-13.607143 0,0 -6.76964,-1.757864 -9.338697,0 -3.096501,2.118764 -1.130724,8.168685 -4.077153,10.491622 -3.116666,2.45715 -11.797847,1.603617 -11.797847,1.603617 l 1.344215,17.203479 -3.779762,20.021604 c 0,0 -2.757509,13.43526 -1.511905,20.00588 1.3184,6.95462 9.36069,12.04279 9.239119,19.12023 -0.09292,5.40953 -7.503176,8.95306 -7.559525,14.36309 -0.02347,2.25369 3.02381,6.04762 3.02381,6.04762 0,0 15.962135,4.87371 24.190475,6.04762 6.490709,0.92601 19.654763,0.75595 19.654763,0.75595 0,0 10.536682,-0.31606 12.996626,3.42865 2.024016,3.08111 -1.657341,10.93445 -1.657341,10.93445 l 68.035717,-3.77976 4.53571,-4.53572 c 0,0 -5.89198,-14.34317 -1.5119,-18.89881 5.26487,-5.47589 16.47968,5.18188 22.77028,0.92364 8.16311,-5.52579 15.68334,-18.2619 9.86537,-27.87852 -5.99802,-9.91422 -16.47638,-15.22919 -26.84744,-18.44025 -9.06441,-2.8065 -28.46679,0.038 -28.46679,0.038 z" stroke="black" fill="transparent" stroke-width="5" />
+        <text x="100" y="500" font-size="20" fill="black">Australia Circuit</text>
+        
+
+        <!-- Yellow Ball 1 for Circuit 1 -->
+        <circle id="bola1_1" r="5" fill="yellow">
+            <animateMotion id="animateYellow1_1" dur="5s" repeatCount="indefinite" begin="animating.begin" fill="freeze">
+                <mpath xlink:href="#circuit1" />
+            </animateMotion>
+        </circle>
+
+        <!-- Green Ball 2 for Circuit 1 -->
+        <circle id="bola1_2" r="5" fill="green">
+            <animateMotion id="animateGreen1_2" dur="10s" repeatCount="indefinite" begin="animating.begin" fill="freeze">
+                <mpath xlink:href="#circuit1" />
+            </animateMotion>
+        </circle>
+    </svg>
+
+    <!-- SVG elements for Circuit 2 -->
+    <svg width="1500" height="600" id="svgCircuit2" style="display: none;">
+        <!-- Circuit 2 Path -->
+        <path id="circuit2" d="m 40.821427,67.27976 c -6.825421,-0.632979 -13.7324,2.596146 -19.654761,6.047621 -5.390254,3.14137 -11.6504711,6.92713 -13.6071422,12.85119 -3.6120757,10.935999 -3.4362115,27.483329 6.0476192,34.017859 4.435807,3.05635 10.489046,-2.928 15.874999,-3.02381 6.627619,-0.11789 13.040835,3.46562 19.654763,3.02381 4.45524,-0.29761 12.851188,-3.77976 12.851188,-3.77976 l 32.505954,9.82738 c 0,0 43.416913,20.31487 63.500003,33.2619 11.01504,7.1011 30.99404,24.19048 30.99404,24.19048 l 15.11905,-28.72619 -69.54762,-41.57738 -8.53689,16.53923 -13.56128,-9.11728 c 0,0 -8.02315,-5.62727 -12.23281,-4.53572 -1.7194,0.44584 -1.754078,3.57559 -3.466635,4.04703 -10.737126,2.9558 -31.658289,-10.67503 -31.658289,-10.67503 l 7.467811,-9.865376 v -4.535715 l -3.02381,-5.291667 c 0,0 2.489527,-4.696105 1.511906,-6.803572 -4.79052,-10.326967 -18.902741,-14.823776 -30.238096,-15.875 z" stroke="black" fill="transparent" stroke-width="5" />
+<text x="100" y="500" font-size="20" fill="black">Azerbaijan Circuit</text>
+
+        <!-- Yellow Ball 1 for Circuit 2 -->
+        <circle id="bola2_1" r="5" fill="yellow">
+            <animateMotion id="animateYellow2_1" dur="5s" repeatCount="indefinite" begin="animating.begin" fill="freeze">
+                <mpath xlink:href="#circuit2" />
+            </animateMotion>
+        </circle>
+        <!-- Green Ball 2 for Circuit 2 -->
+        <circle id="bola2_2" r="5" fill="green">
+            <animateMotion id="animateGreen2_2" dur="10s" repeatCount="indefinite" begin="animating.begin" fill="freeze">
+                <mpath xlink:href="#circuit2" />
+            </animateMotion>
+        </circle>
+    </svg>
+
+    <br><br>
+    <div id="lapCounter"></div>
+    <div id="lapTime"></div>
+
+    <script>
+        var lapCounter1 = 0;
+        var lapCounter2 = 0;
+        var lapTime = 0;
+        var lapInterval;
+   
+        // Initial visibility based on the selected circuit
+        var selectedCircuit = document.getElementById("circuitSelect").value;
+        if (selectedCircuit === "circuit1") {
+            document.getElementById("svgCircuit1").style.display = "block";
+            document.getElementById("svgCircuit2").style.display = "none";
+        } else if (selectedCircuit === "circuit2") {
+            document.getElementById("svgCircuit1").style.display = "none";
+            document.getElementById("svgCircuit2").style.display = "block";
+        }
+
+        // Show/hide circuits based on the selected circuit
+        function changeCircuit() {
+            var selectedCircuit = document.getElementById("circuitSelect").value;
+
+            if (selectedCircuit === "circuit1") {
+                document.getElementById("svgCircuit1").style.display = "block";
+                document.getElementById("svgCircuit2").style.display = "none";
+            } else if (selectedCircuit === "circuit2") {
+                document.getElementById("svgCircuit1").style.display = "none";
+                document.getElementById("svgCircuit2").style.display = "block";
+            }
+        }
+        
+function startRace() {
+            // Read selected circuit
+            var selectedCircuit = document.getElementById("circuitSelect").value;
+
+            // Read customizable settings for the selected circuit
+            var lapDuration, numLaps, yellowColor, greenColor;
+            if (selectedCircuit === "circuit1") {
+                lapDuration = parseInt(document.getElementById("lapDuration1").value, 10);
+                numLaps = parseInt(document.getElementById("numLaps1").value, 10);
+                yellowColor = document.getElementById("yellowColor1").value;
+                greenColor = document.getElementById("greenColor1").value;
+            } else if (selectedCircuit === "circuit2") {
+                lapDuration = parseInt(document.getElementById("lapDuration2").value, 10);
+                numLaps = parseInt(document.getElementById("numLaps2").value, 10);
+                yellowColor = document.getElementById("yellowColor2").value;
+                greenColor = document.getElementById("greenColor2").value;
+            }
+
+            // Set animation durations based on selected circuit
+            var yellowBallDuration = selectedCircuit === "circuit1" ? lapDuration : lapDuration * 2;
+            var greenBallDuration = selectedCircuit === "circuit1" ? lapDuration * 2 : lapDuration;
+            document.getElementById("animateYellow1_1").setAttribute("dur", yellowBallDuration + "s");
+            document.getElementById("animateGreen1_2").setAttribute("dur", greenBallDuration + "s");
+            document.getElementById("animateYellow2_1").setAttribute("dur", yellowBallDuration + "s");
+            document.getElementById("animateGreen2_2").setAttribute("dur", greenBallDuration + "s");
+
+            // Update lap counters
+            lapCounter1 = 0;
+            lapCounter2 = 0;
+            lapTime = 0;
+            document.getElementById("lapCounter").innerHTML = "Number of laps - Circuit 1: " + lapCounter1 + ", Circuit 2: " + lapCounter2;
+            document.getElementById("lapTime").innerHTML = "Lap time: " + formatTime(lapTime);
+            document.getElementById("startButton").disabled = true;
+            document.getElementById("stopButton").disabled = false;
+
+            // Apply ball colors
+            document.getElementById("bola1_1").setAttribute("fill", yellowColor);
+            document.getElementById("bola1_2").setAttribute("fill", greenColor);
+            document.getElementById("bola2_1").setAttribute("fill", yellowColor);
+            document.getElementById("bola2_2").setAttribute("fill", greenColor);
+
+            // Show/hide selected circuit's SVG
+            if (selectedCircuit === "circuit1") {
+                document.getElementById("svgCircuit1").style.display = "block";
+                document.getElementById("svgCircuit2").style.display = "none";
+            } else if (selectedCircuit === "circuit2") {
+                document.getElementById("svgCircuit1").style.display = "none";
+                document.getElementById("svgCircuit2").style.display = "block";
+            }
+
+            // Start animations
+            document.getElementById("animateYellow1_1").beginElement();
+            document.getElementById("animateGreen1_2").beginElement();
+            document.getElementById("animateYellow2_1").beginElement();
+            document.getElementById("animateGreen2_2").beginElement();
+
+            lapInterval = setInterval(function () {
+                lapTime++;
+                document.getElementById("lapTime").innerHTML = "Lap time: " + formatTime(lapTime);
+
+                // Check if the balls have completed laps
+                if (lapTime % lapDuration === 0) {
+                    lapCounter1++;
+                }
+                if (lapTime % (lapDuration * 2) === 0) {
+                    lapCounter2++;
+                }
+
+                document.getElementById("lapCounter").innerHTML = "Number of laps - Circuit 1: " + lapCounter1 + ", Circuit 2: " + lapCounter2;
+
+                // Check if the race is complete
+                if (lapCounter1 >= numLaps || lapCounter2 >= numLaps) {
+                    stopRace();
+                }
+            }, 1000);
+        }
+
+        function stopRace() {
+            clearInterval(lapInterval);
+            document.getElementById("startButton").disabled = false;
+            document.getElementById("stopButton").disabled = true;
+
+            // Stop animations
+            document.getElementById("animateYellow1_1").endElement();
+            document.getElementById("animateGreen1_2").endElement();
+            document.getElementById("animateYellow2_1").endElement();
+            document.getElementById("animateGreen2_2").endElement();
+        }
+
+        function formatTime(time) {
+            var minutes = Math.floor(time / 60);
+            var seconds = time % 60;
+            return minutes + "m " + seconds + "s";
+        }
+
+    </script>
+    
+</body>
+</html>
